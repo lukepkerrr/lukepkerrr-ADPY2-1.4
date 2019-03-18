@@ -68,3 +68,12 @@ class PhoneBook():
         for contact in self.contacts:
             if contact.name == name and contact.surname == surname:
                 return contact
+
+jhon = Contact('Jhon', 'Smith', '+71234567809', telegram='@jhony', email='jhony@smith.com')
+jhon2 = Contact('Jhon2', 'Smith2', '+2', telegram='@2', email='jhony2@smith.com')
+phone_book = PhoneBook('Книга')
+phone_book.add_contact(jhon)
+phone_book.add_contact(jhon2)
+phone_book.print_contacts()
+phone_book.delete_contact('+2')
+phone_book.print_contacts()
