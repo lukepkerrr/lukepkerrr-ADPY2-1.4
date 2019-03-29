@@ -1,4 +1,4 @@
-def print(text, start = '', max_line = 0, in_file = False):
+def adv_print(text, start = '', max_line = 0, in_file = False):
     text = str(start) + str(text)
 
     if max_line > 0 and len(text) // max_line > 1:
@@ -15,7 +15,7 @@ def print(text, start = '', max_line = 0, in_file = False):
         with open('print.txt', 'w', encoding='utf8') as file:
             file.write(text)
 
-    return __builtins__.print(text)
+    print(text)
 
 
 class Contact():
@@ -68,6 +68,10 @@ class PhoneBook():
         for contact in self.contacts:
             if contact.name == name and contact.surname == surname:
                 return contact
+
+
+adv_print(1,2,3,4,5, sep='+')
+
 
 jhon = Contact('Jhon', 'Smith', '+71234567809', telegram='@jhony', email='jhony@smith.com')
 jhon2 = Contact('Jhon2', 'Smith2', '+2', telegram='@2', email='jhony2@smith.com')
