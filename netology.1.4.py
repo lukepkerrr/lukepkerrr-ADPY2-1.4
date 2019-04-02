@@ -1,5 +1,5 @@
 def adv_print(*args, **kwargs):
-    start = kwargs.pop('start', '')
+    start = str(kwargs.pop('start', ''))
     max_line = int(kwargs.pop('max_line', 0))
     in_file = kwargs.pop('in_file', False)
     separator = str(kwargs.pop('sep', ''))
@@ -11,7 +11,8 @@ def adv_print(*args, **kwargs):
     args_for_text[-1] = args_for_text[-1][0:-1]
     text = ''.join(args_for_text)
 
-    text = str(start) +separator + str(text)
+    if start != '':
+        text = start + separator + str(text)
 
     if max_line > 0 and len(text) // max_line > 1:
         text = list(text)
