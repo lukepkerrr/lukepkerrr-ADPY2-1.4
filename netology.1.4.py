@@ -1,5 +1,17 @@
-def adv_print(text, start = '', max_line = 0, in_file = False):
-    text = str(start) + str(text)
+def adv_print(*args, **kwargs):
+    start = kwargs.pop('start', '')
+    max_line = int(kwargs.pop('max_line', 0))
+    in_file = kwargs.pop('in_file', False)
+    separator = str(kwargs.pop('sep', ''))
+
+    args = list(args)
+    args_for_text = []
+    for arg in args:
+        args_for_text.append(str(arg) + separator)
+    args_for_text[-1] = args_for_text[-1][0:-1]
+    text = ''.join(args_for_text)
+
+    text = str(start) +separator + str(text)
 
     if max_line > 0 and len(text) // max_line > 1:
         text = list(text)
@@ -15,7 +27,7 @@ def adv_print(text, start = '', max_line = 0, in_file = False):
         with open('print.txt', 'w', encoding='utf8') as file:
             file.write(text)
 
-    print(text)
+    print(text, **kwargs)
 
 
 class Contact():
@@ -70,14 +82,19 @@ class PhoneBook():
                 return contact
 
 
-adv_print(1,2,3,4,5, sep='+')
+def test():
+    arr = ['str', 2, False]
+    a = 4
+    b = 'dwa'
+    adv_print(1, b, 'tri', a, arr, sep='+', end='endoftext', start='startoftext', max_line='8', in_file=True)
+    jhon = Contact('Jhon', 'Smith', '+71234567809', telegram='@jhony', email='jhony@smith.com')
+    jhon2 = Contact('Jhon2', 'Smith2', '+2', telegram='@2', email='jhony2@smith.com')
+    phone_book = PhoneBook('Книга')
+    phone_book.add_contact(jhon)
+    phone_book.add_contact(jhon2)
+    phone_book.print_contacts()
+    phone_book.delete_contact('+2')
+    phone_book.print_contacts()
 
-
-jhon = Contact('Jhon', 'Smith', '+71234567809', telegram='@jhony', email='jhony@smith.com')
-jhon2 = Contact('Jhon2', 'Smith2', '+2', telegram='@2', email='jhony2@smith.com')
-phone_book = PhoneBook('Книга')
-phone_book.add_contact(jhon)
-phone_book.add_contact(jhon2)
-phone_book.print_contacts()
-phone_book.delete_contact('+2')
-phone_book.print_contacts()
+if __name__ == '__main__':
+    test()
